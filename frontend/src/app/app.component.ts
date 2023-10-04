@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SecureModule } from './secure/secure.module';
 
 @Component({
   selector: 'app-root',
