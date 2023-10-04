@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PublicModule } from './public/public.module';
 import { SecureModule } from './secure/secure.module';
+import { HttpClientModule} from '@angular/common/http';
+
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { SecureModule } from './secure/secure.module';
     BrowserModule,
     AppRoutingModule,
     SecureModule,
-    PublicModule
+    PublicModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

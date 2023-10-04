@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +15,9 @@ export class RegisterComponent implements OnInit {
   password = '';
   passwordConfirm = '';
 
-  constructor(
+  constructor( 
     private router: Router,
+    private http: HttpClient
   ) {
   }
 
@@ -22,10 +25,15 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.firstName + ' ' + this.lastName);
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.passwordConfirm);
-  }
+    this.http.post(`${environment.api}/register`,{
+      first_name: this.firstName,
+      last_name: this.lastName,
+      email: this.email,
+      password: this.password,
+      password_confirm:this.passwordConfirm
+  }).subscribe(() => this.router.navigate(['/login']));
+ 
+}
+
 
 }
