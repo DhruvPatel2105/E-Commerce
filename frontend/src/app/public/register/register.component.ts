@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -26,12 +24,16 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    this.authService.register({
-      first_name: this.firstName,
-      last_name: this.lastName,
-      email: this.email,
-      password: this.password,
-      password_confirm: this.passwordConfirm,
-    }).subscribe(() => this.router.navigate(['/login']));
+    if (this.password === this.passwordConfirm) {
+      this.authService.register({
+        first_name: this.firstName,
+        last_name: this.lastName,
+        email: this.email,
+        password: this.password,
+        password_confirm: this.passwordConfirm,
+      }).subscribe(() => this.router.navigate(['/login']));
+    } else {
+      alert('Passwords do not match. Please try again.');
+    }
   }
 }
