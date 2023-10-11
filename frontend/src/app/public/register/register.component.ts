@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,9 +16,9 @@ export class RegisterComponent implements OnInit {
   password = '';
   passwordConfirm = '';
 
-  constructor( 
+  constructor(
     private router: Router,
-    private http: HttpClient
+    private authService: AuthService
   ) {
   }
 
@@ -25,15 +26,12 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    this.http.post(`${environment.api}/register`,{
+    this.authService.register({
       first_name: this.firstName,
       last_name: this.lastName,
       email: this.email,
       password: this.password,
-      password_confirm:this.passwordConfirm
-  }).subscribe(() => this.router.navigate(['/login']));
- 
-}
-
-
+      password_confirm: this.passwordConfirm,
+    }).subscribe(() => this.router.navigate(['/login']));
+  }
 }

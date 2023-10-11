@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {environment} from '../../../environments/environment';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +11,26 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.css', './../public.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup | undefined;
-  email: '' | undefined;
-  password: '' | undefined;
+  form: FormGroup;
 
-  constructor( 
+  constructor(
+    private formBuilder: FormBuilder,
     private router: Router,
-    private http: HttpClient
+    private authService: AuthService
   ) {
+    this.form = this.formBuilder.group({
+      email: '',
+      password: ''
+    });
   }
 
   ngOnInit(): void {
+    console.log("...imnside the login component...");
   }
 
+
   submit(): void {
-    this.http.post(`${environment.api}/register`,{
-      email: this.email,
-      password: this.password
-  }).subscribe(() => this.router.navigate(['/login']));
- 
+    this.authService.login(this.form.getRawValue())
+      .subscribe(() => this.router.navigate(['/']));
   }
 }
