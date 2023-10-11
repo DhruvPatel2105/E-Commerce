@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { environment } from '../../../environments/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,18 +17,19 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {
     this.form = this.formBuilder.group({
-      email: '',
-      password: ''
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
-    console.log("...imnside the login component...");
+    console.log("Inside the login component...");
   }
 
-
   submit(): void {
-    this.authService.login(this.form.getRawValue())
-      .subscribe(() => this.router.navigate(['/']));
+    if (this.form.valid) {
+      this.authService.login(this.form.getRawValue())
+        .subscribe(() => this.router.navigate(['/']));
+    }
   }
 }

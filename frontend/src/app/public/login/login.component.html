@@ -1,16 +1,26 @@
 <main class="form-signin">
-  <form [formGroup]="form" (submit)="submit()">
+  <form [formGroup]="form" (submit)="submit()" class="form-signin">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <input formControlName="email" name="email" type="email" class="form-control" placeholder="Email address" required>
+    <div class="form-group">
+      <input formControlName="email" name="email" type="email" class="form-control" placeholder="Email address" required>
+      <div *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched" class="text-danger">
+        Email is required
+      </div>
+      <div *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched" class="text-danger">
+        Invalid email format
+      </div>
+    </div>
 
-    <input formControlName="password" name="password" type="password" class="form-control" placeholder="Password"
-           required>
+    <div class="form-group">
+      <input formControlName="password" name="password" type="password" class="form-control" placeholder="Password" required>
+      <div *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched" class="text-danger">
+        Password is required
+      </div>
+    </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
 
-
-    <a routerLink="/register"><button class="btn btn-success pull-right" > Register </button></a>
-
+    <a routerLink="/register"><button class="btn btn-success pull-right">Register</button></a>
   </form>
 </main>
