@@ -50,4 +50,13 @@ class AuthController extends Controller
         return $request->user();
         // return new UserResource($user->load('role'));
     }
+
+    public function logout()
+    {
+        $cookie = \Cookie::forget('jwt');
+
+        return \response([
+            'message' => 'Logout successfully'
+        ])->withCookie($cookie);
+    }
 }
