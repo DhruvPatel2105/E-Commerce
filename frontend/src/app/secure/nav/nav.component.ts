@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -7,17 +7,17 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent {
+export class NavComponent implements OnInit{
 
-  user: User | undefined;
+  @Input('user') user: User | undefined;
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.authService.user().subscribe(user => {
-      (      user: User | undefined) => this.user = user;
-    });
+    // this.authService.user().subscribe(user => {
+    //   (      user: User | undefined) => this.user = user;
+    // });
   }
 
   logout(): void {
