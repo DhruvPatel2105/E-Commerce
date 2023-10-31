@@ -18,10 +18,10 @@ export class SecureComponent implements OnInit {
   }
 
   ngOnInit():void {
-    this.authService.user().subscribe(
-     user => this.user = user,
-    () => this.router.navigate(['/login'])
-    );
+    // this.authService.user().subscribe(
+    //  user => this.user = user,
+    // () => this.router.navigate(['/login'])
+    // );
     
   }
 
