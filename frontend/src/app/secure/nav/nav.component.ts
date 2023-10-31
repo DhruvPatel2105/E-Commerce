@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,9 +9,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavComponent {
 
+  user: User | undefined;
+
   constructor(private authService: AuthService) {
   }
 
+  ngOnInit(): void {
+    this.authService.user().subscribe(user => {
+      (      user: User | undefined) => this.user = user;
+    });
+  }
 
   logout(): void {
     this.authService.logout().subscribe(() => {
