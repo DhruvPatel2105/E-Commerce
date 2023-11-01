@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
+import { UserCreateComponent } from './users/user-create/user-create.component';
 
 
 
@@ -18,7 +19,8 @@ import { UsersComponent } from './users/users.component';
     SecureComponent,
     ProfileComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
+    UserCreateComponent
   ],
   imports: [
     CommonModule,
