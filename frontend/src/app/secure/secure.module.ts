@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UsersComponent } from './users/users.component';
 
 
 
@@ -16,7 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MenuComponent,
     SecureComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
