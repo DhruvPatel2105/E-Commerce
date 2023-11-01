@@ -14,8 +14,8 @@ export class UserService {
     
   }
   
-  all(): Observable<any> {
-  return this.http.get<any>(this.endpoint);
+  all(page:number): Observable<any> {
+  return this.http.get<any>(`${this.endpoint}?page=${page}`);
   }
   
 }
