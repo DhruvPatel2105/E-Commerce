@@ -15,7 +15,11 @@
         <td>{{user.first_name}} {{user.last_name}}</td>
         <td>{{user.email}}</td>
         <td>{{user.role.name}}</td>
-        <td></td>
+        <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary"
+             (click)="delete(user.id)"
+          >Delete</a>
+        </td>
 
     </tr>
 </tbody>
