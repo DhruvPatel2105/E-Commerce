@@ -27,11 +27,11 @@ export class AuthService {
     return this.http.post<void>(`${environment.api}/logout`, {},{withCredentials: true});
   }
 
-  updateInfo(data): Observable<User> {
+  updateInfo(data: any): Observable<User> {
     return this.http.put<User>(`${environment.api}/users/info`, data);
   }
 
-  updatePassword(data): Observable<User> {
+  updatePassword(data: any): Observable<User> {
     return this.http.put<User>(`${environment.api}/users/password`, data);
   }
   
