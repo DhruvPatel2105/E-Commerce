@@ -10,6 +10,6 @@ class PermissionController extends Controller
 {
     public function index()
     {
-        return Permission::all();
+        return PermissionResource::collection(Permission::all());
     }
 }
