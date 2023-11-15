@@ -9,7 +9,7 @@ import {User} from '../../interfaces/user';
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
-  lastPage: number | undefined;
+  lastPage!: number;
 
   constructor(private userService: UserService) {
   }

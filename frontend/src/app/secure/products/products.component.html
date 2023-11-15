@@ -1,5 +1,5 @@
 <div class="pt-3 pb-2 mb-3 border-bottom">
-    <a routerLink="/users/create" class="btn btn-sm btn-outline-secondary">Add</a>
+    <a routerLink="/products/create" class="btn btn-sm btn-outline-secondary">Add</a>
   </div>
   
   <div class="table-responsive">
@@ -7,23 +7,23 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Role</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
         <th>Action</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{user.id}}</td>
-        <td>{{user.first_name}} {{user.last_name}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.role.name}}</td>
+      <tr *ngFor="let product of products">
+        <td>{{product.id}}</td>
+        <td><img [src]="product.image" height="50"/></td>
+        <td>{{product.title}}</td>
+        <td>{{product.price}}</td>
         <td>
           <div class="btn-group mr-2">
-            <a [routerLink]="['/users', user.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <a [routerLink]="['/products', product.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
             <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary"
-               (click)="delete(user.id)"
+               (click)="delete(product.id)"
             >Delete</a>
           </div>
         </td>
