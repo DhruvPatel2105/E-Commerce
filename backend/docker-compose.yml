@@ -1,0 +1,48 @@
+version: '3'
+services:
+  # Laravel Application
+  laravel-app:
+    build:
+      context: ./laravel-app  # Path to your Laravel application code
+    working_dir: /var/www/html
+    volumes:
+      - ./laravel-app:/var/www/html
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=multivendor_admin
+      - DB_USERNAME=root
+      - DB_PASSWORD=''
+    depends_on:
+      - mysql
+    networks:
+      - laravel-network
+
+  # MySQL Database
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=yourpassword
+      - MYSQL_DATABASE=laravel
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - laravel-network
+
+  # Nginx Web Server
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-config:/etc/nginx/conf.d
+    depends_on:
+      - laravel-app
+    networks:
+      - laravel-network
+
+networks:
+  laravel-network:
+
+volumes:
+  mysql-data:

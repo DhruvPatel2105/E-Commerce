@@ -1,0 +1,22 @@
+version: '3'
+services:
+  # Angular Application
+  angular-app:
+    image: node:14  # You can specify the Node.js version you need
+    working_dir: /app
+    volumes:
+      - ./angular-app:/app  # Mount your Angular app source code into the container
+    command: npm start  # Modify this based on your npm start command
+    ports:
+      - "4200:4200"  # Map the port your Angular app is running on
+
+  # Nginx Web Server
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"  # Map the default HTTP port
+    volumes:
+      - ./nginx-config:/etc/nginx/conf.d  # Mount Nginx configuration files
+    depends_on:
+      - angular-app  # Make sure the Angular app container is running
+
