@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../services/user.service';
 import {User} from '../../interfaces/user';
 
 @Component({
@@ -8,9 +8,26 @@ import {User} from '../../interfaces/user';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  users: User[] = [];
+  lastPage: number | undefined;
 
+  constructor(private userService: UserService) {
+  }
 
-delete(id: number): void {
+  ngOnInit(): void {
+    this.load();
+  }
+
+  load(page = 1): void {
+    this.userService.all(page).subscribe(
+      (res: any) => {
+        this.users = res.data;
+        this.lastPage = res.meta.last_page;
+      }
+    );
+  }
+
+  delete(id: number): void {
     if (confirm('Are you sure you want to delete this record?')) {
       this.userService.delete(id).subscribe(
         () => {
@@ -19,43 +36,4 @@ delete(id: number): void {
       );
     }
   }
-
-  users: User[] = [];
-  page = 1;
-  lastPage: number = 0;
-
-  constructor(private userService: UserService){
-    
-  }
-
-  ngOnInit(): void{
-  this.load;
-}
-
-load(): void{
-  this.userService.all(this.page).subscribe(
-    (res:any) =>{
-      this.users = res.data;
-      this.lastPage = res.meta.last_page;
-    }
-  );
-}
-
-next(): void{
-  if(this.page === this.lastPage){
-    return;
-  }
-this.page++;
-this.load();
-}
-
-previous(): void{
-  if(this.page === 0){
-    return;
-  }
-this.page--;
-this.load();
-}
-
-
 }
