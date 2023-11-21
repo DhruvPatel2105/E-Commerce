@@ -17,6 +17,8 @@ import { ProductsComponent } from './products/products.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { ProductCreateComponent } from './products/product-create/product-create.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 
@@ -36,7 +38,9 @@ import { UploadComponent } from './components/upload/upload.component';
     ProductsComponent,
     PaginatorComponent,
     ProductCreateComponent,
-    UploadComponent
+    UploadComponent,
+    ProductEditComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,
