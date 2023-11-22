@@ -30,7 +30,7 @@ class RoleController extends Controller
         return new RoleResource(Role::with('permissions')->find($id));
     }
 
-    public function update($id)
+    public function update(Request $request,$id)
     {
         $role = Role::find($id);
         $role->update($request->only('name'));
