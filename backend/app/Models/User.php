@@ -52,7 +52,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-
+    public function hasAccess($access)
+    {
+        return $this->role->permissions->pluck('name')->contains($access);
+    }
 
     // /**
     //  * The attributes that are mass assignable.
