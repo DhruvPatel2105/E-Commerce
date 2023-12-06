@@ -48,6 +48,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('users',UserController::class);
     Route::apiResource('roles',RoleController::class);
     Route::post('export', [OrderController::class, 'export']);
-
+    Route::get('chart', [OrderController::class, 'chart']);
 
 });
